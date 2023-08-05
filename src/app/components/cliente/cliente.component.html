@@ -1,0 +1,100 @@
+<nav class="navbar" style="background-color: #198755;">
+    <div class="container-fluid">
+      <div class="col-md-4">
+          <h1 style="color: white;">SISTEMA SOA</h1>
+        </div>
+    </div> 
+</nav>
+<div class="col-md-12 p-2">
+    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-save"></i> New card</button>
+    <table class="table mt-2 table-bordered">
+        <thead class="table-primary">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>PhoneNumber</th>
+            <th>Address</th>
+            <th>Department</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listcliente">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.surname}}</td>
+            <td>{{item.phonenumber}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.department}}</td>
+            <td>{{item.active}}</td>
+            <td>
+                <button type="button" class="btn btn-warning btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectItem(item)">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                &nbsp;
+                <button type="button" class="btn btn-danger btn-sm" (click)="delete(item.id)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 *ngIf="!isUpdate" class="modal-title fs-5">Nuevo</h1>
+          <h1 *ngIf="isUpdate" class="modal-title fs-5">Cliente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="newCard()"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formCliente">
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="name">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Surname</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="surname">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">DNI</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="dni">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">PhoneNumber</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="phonenumber">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="address">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Department</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" formControlName="department">
+                    </div>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button *ngIf="!isUpdate" type="button" class="btn btn-success btn-sm"(click)="save()">Save</button>
+          <button *ngIf="isUpdate" type="button" class="btn btn-warning btn-sm" (click)="update()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
