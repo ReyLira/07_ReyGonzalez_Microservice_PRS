@@ -24,9 +24,11 @@ export class ClienteComponent implements OnInit  {
       surname: new FormControl(''),
       dni: new FormControl(''),
       phonenumber: new FormControl(''),
-      address: new FormControl(''),
+      rank: new FormControl(''),
       department: new FormControl(''),
-      active : new FormControl('A')
+      address: new FormControl(''),
+      email: new FormControl(''),
+      estado : new FormControl('A')
     });
   }
 
@@ -40,7 +42,7 @@ export class ClienteComponent implements OnInit  {
   }
 
   save(){
-    this.formCliente.controls['active'].setValue('A');
+    this.formCliente.controls['estado'].setValue('A');
     this.clienteService.saveCliente(this.formCliente.value).subscribe(resp=>{
       if(resp){
         this.consultarcliente();
@@ -49,14 +51,16 @@ export class ClienteComponent implements OnInit  {
     });
   }
 
-  update(){
-    this.clienteService.updateCliente(this.formCliente.value).subscribe(resp=>{
-      if(resp){
+  update() {
+    this.formCliente.controls['estado'].setValue('A');
+    this.clienteService.updateCliente(this.formCliente.value).subscribe(resp => {
+      if (resp) {
         this.consultarcliente();
         this.formCliente.reset();
       }
     });
   }
+  
 
   delete(id:any){
     this.clienteService.deleteCliente(id).subscribe(resp=>{
@@ -78,7 +82,9 @@ export class ClienteComponent implements OnInit  {
     this.formCliente.controls['surname'].setValue(cliente.surname);
     this.formCliente.controls['dni'].setValue(cliente.dni);
     this.formCliente.controls['phonenumber'].setValue(cliente.phonenumber);
-    this.formCliente.controls['address'].setValue(cliente.address);
+    this.formCliente.controls['rank'].setValue(cliente.rank);
     this.formCliente.controls['department'].setValue(cliente.department);
+    this.formCliente.controls['address'].setValue(cliente.address);
+    this.formCliente.controls['email'].setValue(cliente.email);
   }
 }

@@ -4,7 +4,9 @@ export class Cliente{
     public surname: string | undefined;
     public dni: string | undefined;
     public phonenumber: string | undefined;
-    public address: string | undefined;
+    public rank: string | undefined;
     public department: string | undefined;
-    public active: string | undefined ;
+    public address: string | undefined;
+    public email: string | undefined;
+    public estado: string | undefined ;
 }

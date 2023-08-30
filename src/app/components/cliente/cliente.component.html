@@ -1,9 +1,41 @@
-<nav class="navbar" style="background-color: #198755;">
-    <div class="container-fluid">
-      <div class="col-md-4">
-          <h1 style="color: white;">SISTEMA SOA</h1>
-        </div>
-    </div> 
+<style>
+  /* Estilos generales */
+  body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+  }
+
+  /* Estilos para el nav */
+  .navbar {
+      background-color: #89c8fc;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      margin-right: 10px;
+      margin-left: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between; /* Distribuir contenido a los extremos */
+      align-items: center;
+  }
+
+  .navbar img {
+      width: 190px;
+      height: 100px;
+  }
+
+  .navbar h1 {
+      color: white;
+      margin: 0;
+      font-size: 24px;
+  }
+</style>
+<nav class="navbar">
+  <div style="display: flex; align-items: center;">
+      <img src="assets/soaa.png" alt="logo">
+      <h1>SISTEMA SOA</h1>
+  </div>
 </nav>
 <div class="col-md-12 p-2">
     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-save"></i> New card</button>
@@ -13,9 +45,12 @@
             <th>ID</th>
             <th>Name</th>
             <th>Surname</th>
+            <th>DNI</th>
             <th>PhoneNumber</th>
-            <th>Address</th>
+            <th>Rank</th>
             <th>Department</th>
+            <th>Address</th>
+            <th>Email</th>
             <th>Active</th>
           </tr>
         </thead>
@@ -24,10 +59,13 @@
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.surname}}</td>
+            <td>{{item.dni}}</td>
             <td>{{item.phonenumber}}</td>
-            <td>{{item.address}}</td>
+            <td>{{item.rank}}</td>
             <td>{{item.department}}</td>
-            <td>{{item.active}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.estado}}</td>
             <td>
                 <button type="button" class="btn btn-warning btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectItem(item)">
                     <i class="fa fa-pencil"></i>
@@ -77,10 +115,10 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label">Address</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" formControlName="address">
-                    </div>
+                  <label class="col-sm-2 col-form-label">Rank</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" formControlName="rank">
+                  </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Department</label>
@@ -88,6 +126,18 @@
                       <input type="text" class="form-control" formControlName="department">
                     </div>
                 </div>
+              <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" formControlName="address">
+                  </div>
+              </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" formControlName="email">
+                </div>
+            </div>
               </form>
         </div>
         <div class="modal-footer">

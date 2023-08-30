@@ -9,26 +9,28 @@ import { Cliente } from '../model/Cliente';
 })
 export class ClienteService {
 
-  private baseUrl = 'http://localhost:8080/ms-soa';
+  private baseUrl = 'http://localhost:8080/v1/funcionary';
 
   constructor(private httpClient: HttpClient) {
 
   }
 
-   consultarCliente(): Observable<Cliente[]>{
+  consultarCliente(): Observable<Cliente[]>{
       return this.httpClient.get<Cliente[]>(this.baseUrl).pipe(map(res => res));
   }
 
-   saveCliente(request:any): Observable<any>{
+  saveCliente(request:any): Observable<any>{
     return this.httpClient.post<any>(this.baseUrl, request).pipe(map (res => res));
   }
 
-  updateCliente(request:any): Observable<any>{
-    return this.httpClient.post<any>(this.baseUrl, request).pipe(map (res => res));
+  updateCliente(request: any): Observable<any> {
+    const id = request.id; 
+    return this.httpClient.put<any>(`${this.baseUrl}/${id}`, request).pipe(map(res => res));
   }
+  
 
   deleteCliente(id: number): Observable<any> {
-    return this.httpClient.delete<any>('http://localhost:8080/ms-soa/'+ id).pipe(map(resp => resp));
+    return this.httpClient.delete<any>('http://localhost:8080/v1/funcionary/'+ id).pipe(map(resp => resp));
   }
 
 }
